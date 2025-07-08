@@ -17,31 +17,12 @@ This repository contains a containerized web application deployed on **DigitalOc
 
 ## Features
 
-- Web app placeholder built with Flask and Jinja2
+- Placeholder web app built with Flask
 - Deployed using Kubernetes Deployment and Service
 - Horizontal Pod Autoscaler (HPA) scales pods from 2–5 replicas
 - LoadBalancer service exposes the app to the internet
 - Container image hosted on DigitalOcean Container Registry (DOCR)
 - DOKS cluster with multiple nodes for fault tolerance
-
----
-
-## Project Structure
-.
-├── Dockerfile
-├── k8s/
-│ ├── deployment.yaml
-│ ├── service.yaml
-│ └── hpa.yaml
-├── packages/
-│ └── reminders/
-│ └── birthdays/
-│ ├── main.py
-│ ├── requirements.txt
-│ └── templates/
-│ └── index.html
-├── .env.example
-└── README.md
 
 ---
 
