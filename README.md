@@ -32,12 +32,11 @@ This repository contains a containerized web application deployed on **DigitalOc
 
 - [doctl](https://docs.digitalocean.com/reference/doctl/) CLI installed and authenticated
 - Docker installed and running
-- `kubectl` configured for your DOKS cluster
+- kubectl configured for your DOKS cluster
 
 ### 🐳 1. Build & Push Docker Image
 
 ```
-bash
 docker build -t birthday-app .
 docker tag birthday-app registry.digitalocean.com/<your-registry-name>/birthday-app:latest
 docker push registry.digitalocean.com/<your-registry-name>/birthday-app:latest
