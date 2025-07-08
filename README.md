@@ -44,3 +44,28 @@ docker build -t birthday-app .
 docker tag birthday-app registry.digitalocean.com/<your-registry-name>/birthday-app:latest
 docker push registry.digitalocean.com/<your-registry-name>/birthday-app:latest
 ```
+
+---
+
+### 2. Deploy Kubernetes Resources
+```
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/hpa.yaml
+```
+
+To view external IP:
+```
+kubectl get svc
+```
+
+### 3. Verify HPA
+```
+kubectl get hpa
+kubectl get pods -o wide
+```
+
+To simulate traffic:
+```
+ab -n 10000 -c 100 http://<external-ip>/
+```
