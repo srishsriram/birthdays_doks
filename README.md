@@ -45,8 +45,6 @@ docker tag birthday-app registry.digitalocean.com/<your-registry-name>/birthday-
 docker push registry.digitalocean.com/<your-registry-name>/birthday-app:latest
 ```
 
----
-
 ### 2. Deploy Kubernetes Resources
 ```
 kubectl apply -f k8s/deployment.yaml
