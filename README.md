@@ -38,7 +38,7 @@ This repository contains a containerized web application deployed on **DigitalOc
 - Docker installed and running
 - kubectl configured for your DOKS cluster
 
-### 🐳 1. Build & Push Docker Image
+### 1. Build & Push Docker Image
 
 ```
 docker build -t birthday-app .
