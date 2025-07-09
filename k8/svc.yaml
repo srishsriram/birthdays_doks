@@ -1,0 +1,79 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubernetes.digitalocean.com/load-balancer-id: c4aceca5-a3c3-4c8c-8395-ae75111c6640
+      service.beta.kubernetes.io/do-loadbalancer-type: REGIONAL_NETWORK
+    creationTimestamp: "2025-06-29T22:59:46Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    name: birthday
+    namespace: default
+    resourceVersion: "10810"
+    uid: 7c725478-24b8-4986-928f-6e7235821600
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 10.108.53.69
+    clusterIPs:
+    - 10.108.53.69
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30214
+      port: 80
+      protocol: TCP
+      targetPort: 5000
+    selector:
+      app: birthday
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 159.203.148.177
+        ipMode: VIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubernetes.digitalocean.com/load-balancer-id: c4aceca5-a3c3-4c8c-8395-ae75111c6640
+      service.beta.kubernetes.io/do-loadbalancer-type: REGIONAL_NETWORK
+    creationTimestamp: "2025-06-29T22:59:46Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    name: birthday
+    namespace: default
+    resourceVersion: "10810"
+    uid: 7c725478-24b8-4986-928f-6e7235821600
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 10.108.53.69
+    clusterIPs:
+    - 10.108.53.69
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30214
+      port: 80
+      protocol: TCP
+      targetPort: 5000
+    selector:
+      app: birthday
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 159.203.148.177
+        ipMode: VIP
+kind: List
+metadata:
+  resourceVersion: ""
