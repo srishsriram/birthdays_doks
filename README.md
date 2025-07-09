@@ -30,9 +30,9 @@ This repository contains a containerized web application deployed on **DigitalOc
 
 ![DigitalOcean drawio](https://github.com/user-attachments/assets/1c207a07-de36-49be-be2d-6df0906f98d6)
 
-## ⚙️ Setup & Deployment
+## Setup & Deployment
 
-### 🔧 Prerequisites
+### Prerequisites
 
 - [doctl](https://docs.digitalocean.com/reference/doctl/) CLI installed and authenticated
 - Docker installed and running
