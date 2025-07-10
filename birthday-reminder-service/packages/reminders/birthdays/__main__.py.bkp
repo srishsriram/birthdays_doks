@@ -1,0 +1,64 @@
+# birthday_reminder_service/__main__.py
+
+from datetime import datetime
+import pg8000
+from dotenv import load_dotenv
+from twilio.rest import Client
+import os
+
+# Load environment variables
+load_dotenv()
+
+def main(params):
+    """DigitalOcean Functions entry point."""
+    try:
+        # Connect to the database
+        connection = pg8000.connect(
+            host=os.getenv("DO_DB_HOST"),
+            database=os.getenv("DO_DB_NAME"),
+            user=os.getenv("DO_DB_USER"),
+            password=os.getenv("DO_DB_PASSWORD"),
+            port=int(os.getenv("DO_DB_PORT"))
+        )
+        cursor = connection.cursor()
+
+        # Get today's month and day
+        today = datetime.now()
+        today_month = today.month
+        today_day = today.day
+
+        # Query to fetch contacts whose birthday matches today's date
+        cursor.execute(
+            """
+            SELECT first_name, last_name, birthday
+            FROM contacts
+            WHERE EXTRACT(MONTH FROM birthday) = %s
+              AND EXTRACT(DAY FROM birthday) = %s;
+            """,
+            (today_month, today_day)
+        )
+        rows = cursor.fetchall()
+
+        # Notify for each matching contact
+        if rows:
+            account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+            auth_token = os.getenv("TWILIO_AUTH_TOKEN")
+            client = Client(account_sid, auth_token)
+
+            for row in rows:
+                first_name, last_name, _ = row
+                message = client.messages.create(
+                    body=f"🎉 It's {first_name} {last_name or ''}'s birthday today! 🎂",
+                    from_=os.getenv("TWILIO_PHONE_FROM"),
+                    to=os.getenv("TWILIO_PHONE_TO")
+                )
+                print(f"Message sent for {first_name} {last_name}. Message SID: {message.sid}")
+        else:
+            print("No birthdays today.")
+
+        # Close the cursor and connection
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(f"An error occurred: {e}")

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: birthday
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: birthday
+  template:
+    metadata:
+      labels:
+        app: birthday
+    spec:
+      containers:
+        - name: birthday-app
+          image: registry.digitalocean.com/birthday-registry/birthday-app:latest
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+

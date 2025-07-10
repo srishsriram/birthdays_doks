@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Birthday Reminder Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1e88e5;
+            color: white;
+            padding: 1em 2em;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2em auto;
+            background: white;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .reminder {
+            padding: 1em;
+            border-bottom: 1px solid #eee;
+        }
+        .reminder:last-child {
+            border-bottom: none;
+        }
+        .reminder h2 {
+            margin: 0;
+            color: #333;
+        }
+        .reminder p {
+            color: #555;
+            margin-top: 0.25em;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.3em 0.6em;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 5px;
+            font-size: 0.85em;
+            margin-top: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎂 Birthday Reminder Dashboard</h1>
+        <p>Welcome! Here's who you’re celebrating soon.</p>
+    </header>
+    <div class="container">
+        {% for r in reminders %}
+        <div class="reminder">
+            <h2>{{ r.name }}</h2>
+            <p>Birthday: {{ r.date }}</p>
+            <span class="badge">📅 Upcoming</span>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
